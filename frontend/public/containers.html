@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Docker 容器管理平台</title>
   <meta name="theme-color" content="#05070d" />
-  <link rel="stylesheet" href="/static/css/login.css?v=2026070301" />
-  <script src="/static/js/bg-canvas.js?v=2026070301"></script>
+  <link rel="stylesheet" href="/static/css/login.css?v=2026070303" />
+  <script src="/static/js/bg-canvas.js?v=2026070303"></script>
 </head>
 <body>
   <div class="bg" aria-hidden="true">
@@ -29,19 +29,19 @@
         <span>‹</span>
       </button>
       <nav class="sidebar-nav">
-        <button class="sidebar-nav-item is-active" type="button" data-view="containers">
-          <span class="nav-icon">▦</span><span class="nav-label">容器管理</span>
+        <button class="sidebar-nav-item is-active" type="button" data-view="dashboard" data-tip="仪表盘" aria-label="仪表盘" aria-current="page">
+          <span class="nav-icon" aria-hidden="true">⌁</span><span class="nav-label">仪表盘</span>
         </button>
-        <button class="sidebar-nav-item" type="button" data-view="dashboard">
-          <span class="nav-icon">⌁</span><span class="nav-label">仪表盘</span>
+        <button class="sidebar-nav-item" type="button" data-view="containers" data-tip="容器管理" aria-label="容器管理">
+          <span class="nav-icon" aria-hidden="true">▦</span><span class="nav-label">容器管理</span>
         </button>
-        <button class="sidebar-nav-item" type="button" data-view="users">
-          <span class="nav-icon">◎</span><span class="nav-label">用户管理</span>
+        <button class="sidebar-nav-item" type="button" data-view="users" data-tip="用户管理" aria-label="用户管理">
+          <span class="nav-icon" aria-hidden="true">◎</span><span class="nav-label">用户管理</span>
         </button>
       </nav>
       <div class="sidebar-footer">
-        <button id="settingsBtn" class="sidebar-settings" type="button" aria-expanded="false">
-          <span class="nav-icon">⚙</span><span class="nav-label">设置</span>
+        <button id="settingsBtn" class="sidebar-settings" type="button" aria-expanded="false" data-tip="设置" aria-label="设置">
+          <span class="nav-icon" aria-hidden="true">⚙</span><span class="nav-label">设置</span>
         </button>
         <div id="settingsMenu" class="settings-menu" hidden>
           <button id="logoutBtn" type="button">退出登录</button>
@@ -50,7 +50,7 @@
     </aside>
 
     <main class="console-shell">
-      <section id="containersView" class="app-view is-active" data-view-panel="containers">
+      <section id="containersView" class="app-view" data-view-panel="containers" hidden>
         <header class="console-header">
           <div>
             <h1>容器管理</h1>
@@ -142,7 +142,7 @@
         </section>
       </section>
 
-      <section id="dashboardView" class="app-view" data-view-panel="dashboard" hidden>
+      <section id="dashboardView" class="app-view is-active" data-view-panel="dashboard">
         <header class="console-header">
           <div>
             <h1>仪表盘</h1>
@@ -336,7 +336,7 @@
 
   <div id="toast" class="toast" hidden></div>
 
-  <script defer src="/static/js/api.js?v=2026070301"></script>
-  <script defer src="/static/js/containers.js?v=2026070301"></script>
+  <script defer src="/static/js/api.js?v=2026070303"></script>
+  <script defer src="/static/js/containers.js?v=2026070303"></script>
 </body>
 </html>

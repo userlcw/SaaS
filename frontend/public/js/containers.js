@@ -13,7 +13,7 @@
     items: [],
     images: [],
     timer: null,
-    currentView: "containers",
+    currentView: "dashboard",
     viewLoaded: {
       containers: false,
       dashboard: false,
@@ -167,8 +167,10 @@
     els.sidebar.classList.toggle("is-collapsed", collapsed);
     if (els.sidebarToggle) {
       els.sidebarToggle.setAttribute("aria-label", collapsed ? "展开侧边栏" : "收起侧边栏");
+      els.sidebarToggle.setAttribute("aria-expanded", collapsed ? "false" : "true");
       els.sidebarToggle.title = collapsed ? "展开侧边栏" : "收起侧边栏";
-      els.sidebarToggle.querySelector("span").textContent = collapsed ? "›" : "‹";
+      const toggleIcon = els.sidebarToggle.querySelector("span");
+      if (toggleIcon) toggleIcon.textContent = collapsed ? "›" : "‹";
     }
     try { localStorage.setItem(SIDEBAR_KEY, collapsed ? "1" : "0"); } catch (_) {}
   }
@@ -202,6 +204,13 @@
         loadAuditLogs();
       }
     } else {
+      if (!state.viewLoaded.containers) {
+        Promise.all([loadImages(), loadContainers()]).finally(() => {
+          state.viewLoaded.containers = true;
+          setupAutoRefresh();
+        });
+        return;
+      }
       setupAutoRefresh();
     }
   }
@@ -665,6 +674,19 @@
         els.settingsBtn.setAttribute("aria-expanded", expanded ? "false" : "true");
         els.settingsMenu.hidden = expanded;
       });
+      document.addEventListener("click", (event) => {
+        if (els.settingsMenu.hidden) return;
+        const target = event.target;
+        if (els.settingsBtn.contains(target) || els.settingsMenu.contains(target)) return;
+        els.settingsBtn.setAttribute("aria-expanded", "false");
+        els.settingsMenu.hidden = true;
+      });
+      document.addEventListener("keydown", (event) => {
+        if (event.key !== "Escape" || els.settingsMenu.hidden) return;
+        els.settingsBtn.setAttribute("aria-expanded", "false");
+        els.settingsMenu.hidden = true;
+        els.settingsBtn.focus();
+      });
     }
     if (els.logoutBtn) {
       els.logoutBtn.addEventListener("click", async () => {
@@ -777,9 +799,6 @@
     }
     restoreSidebarState();
     bindEvents();
-    await loadImages();
-    await loadContainers();
-    state.viewLoaded.containers = true;
-    setupAutoRefresh();
+    activateView("dashboard");
   })();
 })();
