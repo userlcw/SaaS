@@ -1,0 +1,41 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "login-backend"
+version = "1.0.0"
+description = "FastAPI + SQLAlchemy 登录后端系统"
+readme = "docs/README.md"
+requires-python = ">=3.10"
+authors = [{ name = "WUKONG" }]
+
+# 生产依赖统一由 backend/requirements.txt 管理，此处仅声明关键项目元数据。
+
+# ---------- pytest ----------
+[tool.pytest.ini_options]
+minversion = "7.0"
+testpaths = ["backend/tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = "-q --tb=short"
+filterwarnings = [
+    "ignore::DeprecationWarning:jose.*",
+]
+
+# ---------- ruff（可选：代码风格） ----------
+[tool.ruff]
+line-length = 110
+target-version = "py310"
+exclude = [".venv", "logs", "backend/data", "frontend"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP"]
+ignore = ["E501"]
+
+# ---------- black（可选） ----------
+[tool.black]
+line-length = 110
+target-version = ["py310", "py311", "py312"]
+exclude = "/(\\.venv|logs|backend/data|frontend)/"

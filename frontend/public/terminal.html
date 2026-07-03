@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Docker 容器管理平台 · 容器终端</title>
+  <meta name="theme-color" content="#05070d" />
+  <link rel="stylesheet" href="/static/css/login.css?v=2026070206" />
+</head>
+<body class="terminal-page">
+  <main class="terminal-shell">
+    <header class="terminal-header">
+      <div>
+        <h1>容器终端</h1>
+        <p id="terminalSubtitle">正在连接容器...</p>
+      </div>
+      <div class="terminal-actions">
+        <button id="reconnectBtn" class="btn-secondary" type="button">重新连接</button>
+        <button id="closeTerminalBtn" class="btn-primary compact" type="button">关闭页面</button>
+      </div>
+    </header>
+    <section class="terminal-frame" aria-label="容器终端">
+      <pre id="containerTerminal" class="terminal-output" tabindex="0"></pre>
+      <textarea id="terminalInput" class="terminal-input" aria-label="终端输入" autocomplete="off" spellcheck="false"></textarea>
+    </section>
+  </main>
+  <script defer src="/static/js/api.js?v=2026070206"></script>
+  <script defer src="/static/js/terminal.js?v=2026070206"></script>
+</body>
+</html>

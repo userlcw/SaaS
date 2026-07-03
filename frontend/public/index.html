@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Docker 容器管理平台 · 登录</title>
+  <meta name="description" content="Docker 容器管理平台登录入口" />
+  <meta name="theme-color" content="#05070d" />
+  <link rel="preload" as="style" href="/static/css/login.css?v=2026070204" />
+  <link rel="stylesheet" href="/static/css/login.css?v=2026070204" />
+  <!-- 背景动画引擎：Canvas 3 种模式，纯函数时间驱动，刷新即续 -->
+  <script src="/static/js/bg-canvas.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#loginForm">跳到登录表单</a>
+
+  <!-- ============ 背景层：Canvas 引擎（时间函数驱动，刷新可恢复），支持 3 种模式 ============ -->
+  <div class="bg" aria-hidden="true">
+    <div class="bg-grid"></div>
+    <div class="bg-glow bg-glow-a"></div>
+    <div class="bg-glow bg-glow-b"></div>
+    <canvas id="bgCanvas" class="bg-canvas"></canvas>
+  </div>
+
+  <main class="login-shell">
+    <section class="login-card" aria-labelledby="login-title">
+      <header class="login-header">
+        <div class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 40 40" fill="none">
+            <rect x="6"  y="18" width="6" height="6" rx="1" fill="currentColor" opacity="0.85"/>
+            <rect x="14" y="18" width="6" height="6" rx="1" fill="currentColor" opacity="0.85"/>
+            <rect x="22" y="18" width="6" height="6" rx="1" fill="currentColor" opacity="0.85"/>
+            <rect x="14" y="10" width="6" height="6" rx="1" fill="currentColor" opacity="0.85"/>
+            <path d="M4 26c6 4 22 4 30 0 1.5 4-3 8-10 8H14C8 34 4 30 4 26z" fill="currentColor"/>
+          </svg>
+        </div>
+        <h1 id="login-title">Docker 容器管理平台</h1>
+        <p class="subtitle">安全 · 稳定 · 高可用</p>
+      </header>
+
+      <form id="loginForm" class="login-form" novalidate autocomplete="on" aria-describedby="tips">
+        <div class="form-item">
+          <label for="username">账号</label>
+          <div class="input-wrap">
+            <input
+              id="username"
+              name="username"
+              type="text"
+              autocomplete="username"
+              placeholder="请输入账号"
+              required
+              maxlength="64"
+              aria-required="true"
+              aria-invalid="false"
+              aria-describedby="usernameError"
+            />
+          </div>
+          <p id="usernameError" class="field-error" role="alert" aria-live="polite"></p>
+        </div>
+
+        <div class="form-item">
+          <label for="password">密码</label>
+          <div class="input-wrap">
+            <input
+              id="password"
+              name="password"
+              type="password"
+              autocomplete="current-password"
+              placeholder="请输入密码"
+              required
+              minlength="6"
+              maxlength="128"
+              aria-required="true"
+              aria-invalid="false"
+              aria-describedby="passwordError capsHint"
+            />
+            <button
+              type="button"
+              id="togglePwd"
+              class="eye-btn"
+              aria-label="显示密码"
+              aria-pressed="false"
+              title="显示/隐藏密码"
+              tabindex="0"
+            >
+              <svg id="eyeOpen" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z" />
+                <circle cx="12" cy="12" r="3" />
+              </svg>
+              <svg id="eyeClose" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"
+                style="display:none" aria-hidden="true">
+                <path d="M17.94 17.94A10.94 10.94 0 0 1 12 19c-6.5 0-10-7-10-7a19.6 19.6 0 0 1 4.22-5.19" />
+                <path d="M9.9 4.24A10.94 10.94 0 0 1 12 4c6.5 0 10 7 10 7a19.5 19.5 0 0 1-2.16 3.19" />
+                <path d="M14.12 14.12a3 3 0 0 1-4.24-4.24" />
+                <path d="M2 2l20 20" />
+              </svg>
+            </button>
+          </div>
+          <p id="passwordError" class="field-error" role="alert" aria-live="polite"></p>
+          <p id="capsHint" class="caps-hint" role="status" aria-live="polite" hidden>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                 stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M12 4l8 8h-4v6H8v-6H4l8-8z"/>
+            </svg>
+            大写锁定已开启
+          </p>
+        </div>
+
+        <div class="form-row">
+          <label class="remember" title="仅记住账号，不保存密码">
+            <input type="checkbox" id="remember" />
+            <span>记住账号</span>
+          </label>
+          <a href="/register" id="registerLink" class="link-btn">注册账号</a>
+        </div>
+
+        <button id="submitBtn" type="submit" class="btn-primary" aria-live="polite">
+          <span class="btn-label">登 录</span>
+          <span class="btn-spinner" aria-hidden="true"></span>
+        </button>
+
+        <p id="tips" class="tips" role="alert" aria-live="polite"></p>
+      </form>
+
+      <footer class="login-footer">
+        <span>&copy; <span id="year"></span> Docker Ops Console</span>
+      </footer>
+    </section>
+  </main>
+
+  <script defer src="/static/js/api.js?v=2026070204"></script>
+  <script defer src="/static/js/login.js?v=2026070204"></script>
+</body>
+</html>

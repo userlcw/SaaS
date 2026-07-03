@@ -1,0 +1,75 @@
+# ================== 项目级 .gitignore ==================
+
+# -------- Python --------
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# 测试与覆盖率
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+.nox/
+.hypothesis/
+
+# 虚拟环境
+.venv/
+venv/
+env/
+ENV/
+
+# -------- IDE --------
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# -------- 项目运行时产物 --------
+# 日志（保留目录结构，不提交实际日志）
+logs/*
+!logs/.gitkeep
+
+# 后端数据（SQLite / 缓存 / 上传等）
+backend/data/*
+!backend/data/.gitkeep
+
+# 敏感环境文件
+backend/config/.env
+.env
+.env.local
+.env.*.local
+
+# -------- 前端 --------
+node_modules/
+frontend/dist/
+frontend/.turbo/
+frontend/.next/
+
+# -------- 临时文件 --------
+*.log
+*.tmp
+*.bak
+*.orig
+*.rej

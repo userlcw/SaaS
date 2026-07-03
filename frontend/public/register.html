@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Docker 容器管理平台 · 注册</title>
+  <meta name="description" content="Docker 容器管理平台账号注册入口" />
+  <meta name="theme-color" content="#05070d" />
+  <link rel="preload" as="style" href="/static/css/login.css" />
+  <link rel="stylesheet" href="/static/css/login.css" />
+  <!-- 背景动画引擎：与登录页共用星云主题 -->
+  <script src="/static/js/bg-canvas.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#registerForm">跳到注册表单</a>
+
+  <!-- ============ 背景层：Canvas 引擎（星云） ============ -->
+  <div class="bg" aria-hidden="true">
+    <div class="bg-grid"></div>
+    <div class="bg-glow bg-glow-a"></div>
+    <div class="bg-glow bg-glow-b"></div>
+    <canvas id="bgCanvas" class="bg-canvas"></canvas>
+  </div>
+
+  <main class="login-shell">
+    <section class="login-card" aria-labelledby="register-title">
+      <header class="login-header">
+        <div class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 40 40" fill="none">
+            <rect x="6"  y="18" width="6" height="6" rx="1" fill="currentColor" opacity="0.85"/>
+            <rect x="14" y="18" width="6" height="6" rx="1" fill="currentColor" opacity="0.85"/>
+            <rect x="22" y="18" width="6" height="6" rx="1" fill="currentColor" opacity="0.85"/>
+            <rect x="14" y="10" width="6" height="6" rx="1" fill="currentColor" opacity="0.85"/>
+            <path d="M4 26c6 4 22 4 30 0 1.5 4-3 8-10 8H14C8 34 4 30 4 26z" fill="currentColor"/>
+          </svg>
+        </div>
+        <h1 id="register-title">创建账号</h1>
+        <p class="subtitle">加入 · 部署 · 掌控</p>
+      </header>
+
+      <form id="registerForm" class="login-form" novalidate autocomplete="on" aria-describedby="tips">
+        <!-- 邮箱 -->
+        <div class="form-item">
+          <label for="email">电子邮箱</label>
+          <div class="input-wrap">
+            <input
+              id="email"
+              name="email"
+              type="email"
+              autocomplete="email"
+              placeholder="you@example.com"
+              required
+              maxlength="128"
+              aria-required="true"
+              aria-invalid="false"
+              aria-describedby="emailError"
+              inputmode="email"
+            />
+          </div>
+          <p id="emailError" class="field-error" role="alert" aria-live="polite"></p>
+        </div>
+
+        <!-- 邮箱验证码 -->
+        <div class="form-item">
+          <label for="code">邮箱验证码</label>
+          <div class="code-row">
+            <input
+              id="code"
+              name="code"
+              type="text"
+              autocomplete="one-time-code"
+              inputmode="numeric"
+              pattern="\d*"
+              placeholder="6 位数字验证码"
+              required
+              minlength="4"
+              maxlength="10"
+              aria-required="true"
+              aria-invalid="false"
+              aria-describedby="codeError"
+            />
+            <button type="button" id="sendCodeBtn" class="btn-outline">获取验证码</button>
+          </div>
+          <p id="codeError" class="field-error" role="alert" aria-live="polite"></p>
+        </div>
+
+        <!-- 密码 -->
+        <div class="form-item">
+          <label for="password">设置密码</label>
+          <div class="input-wrap">
+            <input
+              id="password"
+              name="password"
+              type="password"
+              autocomplete="new-password"
+              placeholder="至少 8 位，含大小写字母与数字"
+              required
+              minlength="8"
+              maxlength="128"
+              aria-required="true"
+              aria-invalid="false"
+              aria-describedby="passwordError capsHint pwdStrength"
+            />
+            <button
+              type="button"
+              id="togglePwd"
+              class="eye-btn"
+              aria-label="显示密码"
+              aria-pressed="false"
+              title="显示/隐藏密码"
+              tabindex="0"
+            >
+              <svg id="eyeOpen" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z" />
+                <circle cx="12" cy="12" r="3" />
+              </svg>
+              <svg id="eyeClose" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"
+                style="display:none" aria-hidden="true">
+                <path d="M17.94 17.94A10.94 10.94 0 0 1 12 19c-6.5 0-10-7-10-7a19.6 19.6 0 0 1 4.22-5.19" />
+                <path d="M9.9 4.24A10.94 10.94 0 0 1 12 4c6.5 0 10 7 10 7a19.5 19.5 0 0 1-2.16 3.19" />
+                <path d="M14.12 14.12a3 3 0 0 1-4.24-4.24" />
+                <path d="M2 2l20 20" />
+              </svg>
+            </button>
+          </div>
+          <!-- 密码强度：动态显隐 -->
+          <div id="pwdStrength" class="pwd-strength" data-level="0" hidden>
+            <div class="pwd-strength-bar" aria-hidden="true">
+              <div class="pwd-strength-fill"></div>
+            </div>
+            <div class="pwd-strength-meta">
+              <span>强度：<span class="pwd-strength-label" id="pwdStrengthLabel">弱</span></span>
+              <span class="pwd-strength-hint" id="pwdStrengthHint">建议 8+ 位，含大小写与数字</span>
+            </div>
+          </div>
+          <p id="passwordError" class="field-error" role="alert" aria-live="polite"></p>
+          <p id="capsHint" class="caps-hint" role="status" aria-live="polite" hidden>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                 stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M12 4l8 8h-4v6H8v-6H4l8-8z"/>
+            </svg>
+            大写锁定已开启
+          </p>
+        </div>
+
+        <!-- 确认密码 -->
+        <div class="form-item">
+          <label for="confirmPassword">确认密码</label>
+          <div class="input-wrap">
+            <input
+              id="confirmPassword"
+              name="confirmPassword"
+              type="password"
+              autocomplete="new-password"
+              placeholder="请再次输入密码"
+              required
+              minlength="8"
+              maxlength="128"
+              aria-required="true"
+              aria-invalid="false"
+              aria-describedby="confirmError"
+            />
+            <button
+              type="button"
+              id="toggleConfirm"
+              class="eye-btn"
+              aria-label="显示密码"
+              aria-pressed="false"
+              title="显示/隐藏密码"
+              tabindex="0"
+            >
+              <svg id="eyeOpen2" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z" />
+                <circle cx="12" cy="12" r="3" />
+              </svg>
+              <svg id="eyeClose2" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"
+                style="display:none" aria-hidden="true">
+                <path d="M17.94 17.94A10.94 10.94 0 0 1 12 19c-6.5 0-10-7-10-7a19.6 19.6 0 0 1 4.22-5.19" />
+                <path d="M9.9 4.24A10.94 10.94 0 0 1 12 4c6.5 0 10 7 10 7a19.5 19.5 0 0 1-2.16 3.19" />
+                <path d="M14.12 14.12a3 3 0 0 1-4.24-4.24" />
+                <path d="M2 2l20 20" />
+              </svg>
+            </button>
+          </div>
+          <p id="confirmError" class="field-error" role="alert" aria-live="polite"></p>
+        </div>
+
+        <button id="submitBtn" type="submit" class="btn-primary" aria-live="polite">
+          <span class="btn-label">注 册</span>
+          <span class="btn-spinner" aria-hidden="true"></span>
+        </button>
+
+        <p id="tips" class="tips" role="alert" aria-live="polite"></p>
+
+        <p class="auth-alt">
+          已有账号？<a href="/">立即登录</a>
+        </p>
+      </form>
+
+      <footer class="login-footer">
+        <span>&copy; <span id="year"></span> Docker Ops Console</span>
+      </footer>
+    </section>
+  </main>
+
+  <script defer src="/static/js/api.js"></script>
+  <script defer src="/static/js/register.js"></script>
+</body>
+</html>

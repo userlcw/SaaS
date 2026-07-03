@@ -1,0 +1,16 @@
+# FastAPI 后端登录系统依赖
+# 安装命令（使用清华镜像）：
+#   pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
+
+fastapi==0.115.0
+uvicorn[standard]==0.30.6
+SQLAlchemy==2.0.35
+pydantic==2.9.2
+pydantic-settings==2.5.2
+passlib[bcrypt]==1.7.4
+bcrypt==4.0.1
+python-jose[cryptography]==3.3.0
+python-multipart==0.0.9
+email-validator==2.2.0
+docker==7.1.0
+PyMySQL==1.1.1
