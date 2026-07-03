@@ -76,7 +76,7 @@ def test_seed_initial_data_creates_permissions_admin_role_and_local_node():
     _, Session = _memory_db()
     with Session() as db:
         admin = User(
-            username="admin",
+            username="admin_lcw",
             email="admin@example.com",
             password_hash="hash",
             is_active=True,

@@ -107,6 +107,9 @@ def test_console_has_collapsible_sidebar_and_lazy_views():
 
     assert 'id="appSidebar"' in html
     assert 'id="sidebarToggle"' in html
+    assert html.index('data-view="dashboard"') < html.index('data-view="containers"')
+    assert 'id="dashboardView" class="app-view is-active"' in html
+    assert 'id="containersView" class="app-view" data-view-panel="containers" hidden' in html
     assert 'data-view="containers"' in html
     assert 'data-view="dashboard"' in html
     assert 'data-view="users"' in html

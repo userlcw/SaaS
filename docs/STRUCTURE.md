@@ -165,7 +165,7 @@ docs/
 4. **本地开发热加载**：`uvicorn backend.app.main:app --reload`；代码改动无需手动重启。
 5. **数据库切换**：只需修改 `backend/config/.env` 中 `DATABASE_URL`，其他代码无需变更。
 6. **单元测试**：`pytest` 会自动读取 `pyproject.toml` 中的配置，测试路径固定为 `backend/tests`。
-7. **默认账号**：`admin / Admin@123456`，生产环境请首次登录后立即修改。
+7. **默认账号**：`admin_lcw / Xianyu12345@`，生产环境请首次登录后立即修改。
 
 ## 9. 依赖关系示意
 

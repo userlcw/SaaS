@@ -13,8 +13,8 @@ from backend.app.models.user import User
 logger = get_logger(__name__)
 
 # 默认管理员：仅在首次初始化时创建；生产环境请自行修改
-_DEFAULT_ADMIN_USERNAME = "admin"
-_DEFAULT_ADMIN_PASSWORD = "Admin@123456"
+_DEFAULT_ADMIN_USERNAME = "admin_lcw"
+_DEFAULT_ADMIN_PASSWORD = "Xianyu12345@"
 _DEFAULT_ADMIN_EMAIL = "admin@example.com"
 
 _DEFAULT_PERMISSIONS: tuple[tuple[str, str], ...] = (

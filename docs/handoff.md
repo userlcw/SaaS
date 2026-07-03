@@ -16,7 +16,7 @@
     - 接口：`POST /api/v1/auth/login`、`GET /api/v1/auth/me`、`POST /api/v1/auth/logout`、`GET /health`
     - 安全：bcrypt 密码哈希、JWT、参数化查询、CORS、基础安全响应头、登录失败限流锁定
     - 日志：按天写入 `logs/YYYYMMDD.log`，>20M 自动 gzip 压缩；含 request_id / 耗时 / 状态码 的访问日志
-    - 默认管理员：`admin / Admin@123456`（首次启动自动创建，请尽快修改）
+    - 默认管理员：`admin_lcw / Xianyu12345@`（首次启动自动创建，请尽快修改）
   - 前端登录页（`frontend/public/`）：深色渐变 + 白卡片 + 眼睛切换 + 记住我自动回填
   - 工程化：`.gitignore`、`pyproject.toml`（pytest/ruff/black）、根 `README.md`、`docs/STRUCTURE.md`
   - 数据文件归位：SQLite 落到 `backend/data/app.db`（相对 URL 自动归一化）

@@ -40,8 +40,8 @@ uvicorn backend.app.main:app --reload --host 0.0.0.0 --port 8000
 
 ## 默认账号
 
-- 用户名：`admin`
-- 密码：`Admin@123456`
+- 用户名：`admin_lcw`
+- 密码：`Xianyu12345@`
 
 ## 运行测试
 

@@ -7,8 +7,10 @@
   <title>Docker 容器管理平台 · 注册</title>
   <meta name="description" content="Docker 容器管理平台账号注册入口" />
   <meta name="theme-color" content="#05070d" />
-  <link rel="preload" as="style" href="/static/css/login.css" />
-  <link rel="stylesheet" href="/static/css/login.css" />
+  <!-- 主题初始化：在 CSS 加载前读取 localStorage 并设置 data-theme，避免主题闪烁 -->
+  <script>(function(){try{var t=localStorage.getItem('docker_console_theme')||'dark';document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+  <link rel="preload" as="style" href="/static/css/login.css?v=2026070302" />
+  <link rel="stylesheet" href="/static/css/login.css?v=2026070302" />
   <!-- 背景动画引擎：与登录页共用星云主题 -->
   <script src="/static/js/bg-canvas.js"></script>
 </head>

@@ -7,8 +7,10 @@
   <title>Docker 容器管理平台 · 登录</title>
   <meta name="description" content="Docker 容器管理平台登录入口" />
   <meta name="theme-color" content="#05070d" />
-  <link rel="preload" as="style" href="/static/css/login.css?v=2026070204" />
-  <link rel="stylesheet" href="/static/css/login.css?v=2026070204" />
+  <!-- 主题初始化：在 CSS 加载前读取 localStorage 并设置 data-theme，避免主题闪烁 -->
+  <script>(function(){try{var t=localStorage.getItem('docker_console_theme')||'dark';document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+  <link rel="preload" as="style" href="/static/css/login.css?v=2026070302" />
+  <link rel="stylesheet" href="/static/css/login.css?v=2026070302" />
   <!-- 背景动画引擎：Canvas 3 种模式，纯函数时间驱动，刷新即续 -->
   <script src="/static/js/bg-canvas.js"></script>
 </head>
