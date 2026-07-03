@@ -24,8 +24,6 @@
     dashboardCache: null,
     dashboardCacheAt: 0,
   };
-  const SIDEBAR_KEY = "docker_console_sidebar_collapsed";
-
   const els = {
     summaryText: $("summaryText"),
     keyword: $("keyword"),
@@ -63,9 +61,6 @@
     refreshLogBtn: $("refreshLogBtn"),
     logSubtitle: $("logSubtitle"),
     logContent: $("containerLogContent"),
-    appLayout: document.querySelector(".app-layout"),
-    sidebar: $("appSidebar"),
-    sidebarToggle: $("sidebarToggle"),
     settingsBtn: $("settingsBtn"),
     settingsMenu: $("settingsMenu"),
     logoutBtn: $("logoutBtn"),
@@ -159,26 +154,6 @@
 
   function setBar(el, value) {
     if (el) el.style.width = `${clampPercent(value)}%`;
-  }
-
-  function setSidebarCollapsed(collapsed) {
-    if (!els.appLayout || !els.sidebar) return;
-    els.appLayout.classList.toggle("is-sidebar-collapsed", collapsed);
-    els.sidebar.classList.toggle("is-collapsed", collapsed);
-    if (els.sidebarToggle) {
-      els.sidebarToggle.setAttribute("aria-label", collapsed ? "展开侧边栏" : "收起侧边栏");
-      els.sidebarToggle.setAttribute("aria-expanded", collapsed ? "false" : "true");
-      els.sidebarToggle.title = collapsed ? "展开侧边栏" : "收起侧边栏";
-      const toggleIcon = els.sidebarToggle.querySelector("span");
-      if (toggleIcon) toggleIcon.textContent = collapsed ? "›" : "‹";
-    }
-    try { localStorage.setItem(SIDEBAR_KEY, collapsed ? "1" : "0"); } catch (_) {}
-  }
-
-  function restoreSidebarState() {
-    let collapsed = false;
-    try { collapsed = localStorage.getItem(SIDEBAR_KEY) === "1"; } catch (_) {}
-    setSidebarCollapsed(collapsed);
   }
 
   function activateView(view) {
@@ -660,11 +635,6 @@
   }
 
   function bindEvents() {
-    if (els.sidebarToggle) {
-      els.sidebarToggle.addEventListener("click", () => {
-        setSidebarCollapsed(!els.sidebar.classList.contains("is-collapsed"));
-      });
-    }
     els.navItems.forEach((item) => {
       item.addEventListener("click", () => activateView(item.dataset.view || "containers"));
     });
@@ -797,7 +767,6 @@
       window.location.replace("/");
       return;
     }
-    restoreSidebarState();
     bindEvents();
     activateView("dashboard");
   })();

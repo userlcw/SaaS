@@ -100,13 +100,15 @@ def test_container_console_has_log_and_terminal_actions():
     assert "/api/v1/containers/" in terminal_js
 
 
-def test_console_has_collapsible_sidebar_and_lazy_views():
+def test_console_has_sidebar_navigation_and_lazy_views():
     html = (PUBLIC / "containers.html").read_text(encoding="utf-8")
     js = (PUBLIC / "js" / "containers.js").read_text(encoding="utf-8")
     api_js = (PUBLIC / "js" / "api.js").read_text(encoding="utf-8")
 
     assert 'id="appSidebar"' in html
-    assert 'id="sidebarToggle"' in html
+    assert 'id="sidebarToggle"' not in html
+    assert "sidebarToggle" not in js
+    assert "docker_console_sidebar_collapsed" not in js
     assert html.index('data-view="dashboard"') < html.index('data-view="containers"')
     assert 'id="dashboardView" class="app-view is-active"' in html
     assert 'id="containersView" class="app-view" data-view-panel="containers" hidden' in html
@@ -115,7 +117,6 @@ def test_console_has_collapsible_sidebar_and_lazy_views():
     assert 'data-view="users"' in html
     assert 'id="dashboardView"' in html
     assert 'id="usersView"' in html
-    assert "docker_console_sidebar_collapsed" in js
     assert "activateView" in js
     assert "loadDashboard" in js
     assert "loadUsers" in js
