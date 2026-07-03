@@ -235,11 +235,11 @@
           <td>${ports}</td>
           <td>${escapeHtml((item.created_at || "").replace("T", " ").replace("Z", ""))}</td>
           <td class="row-actions">
-            <button data-action="logs" data-id="${escapeHtml(item.docker_id || item.id)}" data-name="${escapeHtml(item.name)}">日志</button>
-            <button data-action="terminal" data-id="${escapeHtml(item.docker_id || item.id)}" data-name="${escapeHtml(item.name)}">进入</button>
             <button data-action="start" data-id="${escapeHtml(item.docker_id || item.id)}">启动</button>
             <button data-action="stop" data-id="${escapeHtml(item.docker_id || item.id)}">停止</button>
             <button data-action="restart" data-id="${escapeHtml(item.docker_id || item.id)}">重启</button>
+            <button data-action="logs" data-id="${escapeHtml(item.docker_id || item.id)}" data-name="${escapeHtml(item.name)}">日志</button>
+            <button data-action="terminal" data-id="${escapeHtml(item.docker_id || item.id)}" data-name="${escapeHtml(item.name)}">进入</button>
             <button data-action="delete" data-id="${escapeHtml(item.docker_id || item.id)}">删除</button>
           </td>
         </tr>`;

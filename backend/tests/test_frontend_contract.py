@@ -81,6 +81,16 @@ def test_container_console_has_log_and_terminal_actions():
     terminal_html = (PUBLIC / "terminal.html").read_text(encoding="utf-8")
     terminal_js = (PUBLIC / "js" / "terminal.js").read_text(encoding="utf-8")
 
+    action_order = [
+        'data-action="start"',
+        'data-action="stop"',
+        'data-action="restart"',
+        'data-action="logs"',
+        'data-action="terminal"',
+        'data-action="delete"',
+    ]
+    positions = [js.index(action) for action in action_order]
+    assert positions == sorted(positions)
     assert 'data-action="logs"' in js
     assert 'data-action="terminal"' in js
     assert "openLogModal" in js
